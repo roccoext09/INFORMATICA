@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Descendente</title>
+    <style>
+        /* ==== ESTILOS CSS ==== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        #counter {
+            color: #007bff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contador: <span id="counter">10</span></h1>
+        <button id="decreaseButton">Disminuir</button>
+    </div>
+
+    <script>
+        // ==== SCRIPT JAVASCRIPT ====
+
+        // Obtener los elementos del DOM
+        const counterDisplay = document.getElementById('counter');
+        const decreaseButton = document.getElementById('decreaseButton');
+
+        // Valor inicial del contador
+        let counter = 10;
+
+        // Función para disminuir el contador
+        decreaseButton.addEventListener('click', () => {
+            if (counter > 0) {
+                counter--;
+                counterDisplay.textContent = counter;
+            } else {
+                alert("El contador ha llegado a 0");
+            }
+        });
+    </script>
+</body>
+</html>
