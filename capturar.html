@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Asistencia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9ff3, #f368e0);
+            color: white;
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #00cec9;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #009688;
+        }
+
+        #resultado {
+            margin-top: 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎓 Registro de Asistencia - Fiesta de Fin de Año</h1>
+    <button onclick="registrarAsistencia()">Registrar asistencia</button>
+    <p id="resultado"></p>
+
+    <script>
+        function registrarAsistencia() {
+            // Capturamos el nombre del estudiante
+            let nombre = prompt("Por favor, ingresa tu nombre:");
+
+            // Validamos que haya ingresado algo
+            if (!nombre) {
+                document.getElementById("resultado").textContent = "⚠️ Debes ingresar un nombre.";
+                document.getElementById("resultado").style.color = "yellow";
+                return;
+            }
+
+            // Preguntamos si asistirá a la fiesta
+            let respuesta = prompt("¿Asistirás a la fiesta de fin de año? (Sí/No)");
+
+            // Convertimos la respuesta a minúsculas para comparar fácilmente
+            if (respuesta) {
+                respuesta = respuesta.toLowerCase();
+            }
+
+            const resultado = document.getElementById("resultado");
+
+            // Evaluamos la respuesta
+            if (respuesta === "sí" || respuesta === "si") {
+                resultado.textContent = "🎉 " + nombre + " asistirá a la fiesta de fin de año.";
+                resultado.style.color = "#00ff99";
+            } else if (respuesta === "no") {
+                resultado.textContent = "🙁 " + nombre + " no asistirá a la fiesta de fin de año.";
+                resultado.style.color = "#ff4444";
+            } else {
+                resultado.textContent = "⚠️ Respuesta no válida. Escribe 'Sí' o 'No'.";
+                resultado.style.color = "yellow";
+            }
+        }
+    </script>
+</body>
+</html>

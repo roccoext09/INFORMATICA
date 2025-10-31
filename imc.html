@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Días para un Evento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #81ecec);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2d3436;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #636e72;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b2bec3;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #74b9ff;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>Calculadora de Eventos</h2>
+        <form id="formEvento">
+            <label for="evento">Nombre del evento:</label>
+            <input type="text" id="evento" placeholder="Ej: Cumpleaños" required>
+
+            <label for="fecha">Fecha del evento:</label>
+            <input type="date" id="fecha" required>
+
+            <button type="submit">Calcular</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        document.getElementById("formEvento").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nombreEvento = document.getElementById("evento").value.trim();
+            const fechaEvento = new Date(document.getElementById("fecha").value);
+            const hoy = new Date();
+
+            // Quitar horas, minutos y segundos para comparar solo fechas
+            fechaEvento.setHours(0, 0, 0, 0);
+            hoy.setHours(0, 0, 0, 0);
+
+            const diferenciaMilisegundos = fechaEvento - hoy;
+            const diferenciaDias = Math.round(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
+
+            const resultado = document.getElementById("resultado");
+
+            if (diferenciaDias > 0) {
+                resultado.textContent = `Faltan ${diferenciaDias} días para ${nombreEvento}.`;
+                resultado.style.color = "#0984e3";
+            } else if (diferenciaDias === 0) {
+                resultado.textContent = `¡El evento "${nombreEvento}" es hoy! 🎉`;
+                resultado.style.color = "#00b894";
+            } else {
+                resultado.textContent = `El evento "${nombreEvento}" ya ocurrió.`;
+                resultado.style.color = "#d63031";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #3498db, #8e44ad);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Estudiante</h2>
+        <form id="formEstudiante">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" required>
+
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("formEstudiante").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById("nombre").value;
+            const apellido = document.getElementById("apellido").value;
+            const curso = document.getElementById("curso").value;
+
+            // Crear el contenido de la nueva página
+            const nuevaPagina = `
+                <html>
+                <head>
+                    <title>Bienvenida</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background: linear-gradient(120deg, #2ecc71, #27ae60);
+                            color: white;
+                            height: 100vh;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        .mensaje {
+                            text-align: center;
+                            background-color: rgba(0,0,0,0.3);
+                            padding: 30px;
+                            border-radius: 10px;
+                        }
+                        h1 { font-size: 2em; }
+                        p { font-size: 1.2em; }
+                    </style>
+                </head>
+                <body>
+                    <div class="mensaje">
+                        <h1>¡Bienvenido, ${nombre} ${apellido}!</h1>
+                        <p>Has sido registrado en el curso: <strong>${curso}</strong></p>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            // Abrir nueva ventana con el mensaje
+            const ventana = window.open("", "_blank");
+            ventana.document.write(nuevaPagina);
+            ventana.document.close();
+        });
+    </script>
+</body>
+</html>
